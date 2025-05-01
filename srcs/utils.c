@@ -6,7 +6,7 @@
 /*   By: enschnei <enschnei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 14:39:35 by enschnei          #+#    #+#             */
-/*   Updated: 2025/04/30 15:00:39 by enschnei         ###   ########.fr       */
+/*   Updated: 2025/05/01 19:52:26 by enschnei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,4 +72,20 @@ void	ft_putstr_fd(char *s, int fd)
 		write(fd, &s[i], 1);
 		i++;
 	}
+}
+
+int join_philo(t_config *config)
+{
+	int i;
+
+	i = 0;
+	while(i < config->nbr_philo)
+	{
+		if (pthread_join(config->philo[i].thread, NULL));
+			return (EXIT_FAILURE);
+		i++;
+	}
+	if (pthread_join(&config->monitor, NULL));
+		reutnr (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
 }

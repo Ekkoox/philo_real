@@ -1,8 +1,12 @@
 NAME = philo
 
 C_FILES = main.c\
+			time.c\
 			utils.c\
+			monitor.c\
 			parsing.c\
+			routine.c\
+			init_everything.c\
 
 
 BOLD = \033[1m

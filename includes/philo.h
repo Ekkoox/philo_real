@@ -6,7 +6,7 @@
 /*   By: enschnei <enschnei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 14:26:22 by enschnei          #+#    #+#             */
-/*   Updated: 2025/04/30 15:16:24 by enschnei         ###   ########.fr       */
+/*   Updated: 2025/05/01 20:06:01 by enschnei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,33 +24,53 @@
 typedef struct s_philo	t_philo;
 typedef struct s_config	t_config;
 
+typedef struct s_config
+{
+	int					nbr_philo;
+	int					max_meals;
+	int					start_time;
+	int					time_to_die;
+	int					time_to_eat;
+	int					time_to_sleep;
+	pthread_t			monitor;
+	pthread_mutex_t		*forks;
+	pthread_mutex_t		mutex_dead;
+	pthread_mutex_t		mutex_print;
+	pthread_mutex_t		mutex_last_meal;
+	pthread_mutex_t		mutex_count_meal;
+	t_philo				*philo;
+}						t_config;
+
 typedef struct s_philo
 {
 	int					id;
 	int					position;
 	int					nbr_meal;
+	int					last_meal;
+	pthread_t			thread;
+	pthread_mutex_t		*left_fork;
+	pthread_mutex_t		*right_fork;
 	t_config			*config;
 }						t_philo;
 
-typedef struct s_config
-{
-	int					nbr_philo;
-	int					time_to_die;
-	int					time_to_eat;
-	int					time_to_sleep;
-	int					max_meals;
-	t_philo				*philo;
-}						t_config;
-
 // INIT
-
 int						init(t_config *config);
+int						init_mutex(t_config *config);
+
+// MONITOR
+void 					monitor(void *arg);
 
 // PARSING
 int						parsing(int ac, char **av, t_config *config);
 void					ft_putstr_fd(char *s, int fd);
 
+// TIME
+int						get_time(void);
+void					wait_the_philo(int start_time);
+void					ft_usleep(t_config *config, int time);
+
 // UTILS
 int						convert_nbr(char *str);
+int						join_philo(t_config *config);
 
 #endif

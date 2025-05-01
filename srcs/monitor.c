@@ -1,34 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   monitor.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: enschnei <enschnei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/30 14:25:59 by enschnei          #+#    #+#             */
-/*   Updated: 2025/05/01 20:09:26 by enschnei         ###   ########.fr       */
+/*   Created: 2025/05/01 19:49:38 by enschnei          #+#    #+#             */
+/*   Updated: 2025/05/01 20:08:22 by enschnei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int main(int ac, char **av)
+void monitor(void *arg)
 {
-    t_config config;
+    t_config *config;
 
-    if (parsing(ac, av, &config) == EXIT_FAILURE)
-        return (EXIT_FAILURE);
-    if (init(&config))
-        return (EXIT_FAILURE);
-    if (init_mutex(&config))
-        return (EXIT_FAILURE);
-    if (start_routine(&config))
-        return (EXIT_FAILURE);
-    // free_and_clean(&config);
+    config = (t_config *)arg;
+    wait_the_philo(config->start_time);
+    while(check_deat(config) != EXIT_FAILURE)
+    {
+        if (stop_everything(config))
+            break ;
+        usleep (1000);
+    }
     return (EXIT_SUCCESS);
 }
-
-// TO DO LIST
-// faire le print de msg
-// faire le monitor de mort
-// faire free_and_clean
