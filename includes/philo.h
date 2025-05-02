@@ -6,7 +6,7 @@
 /*   By: enschnei <enschnei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 14:26:22 by enschnei          #+#    #+#             */
-/*   Updated: 2025/05/01 20:06:01 by enschnei         ###   ########.fr       */
+/*   Updated: 2025/05/02 13:06:41 by enschnei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_config
 	int					time_to_die;
 	int					time_to_eat;
 	int					time_to_sleep;
+	int					status_death;
 	pthread_t			monitor;
 	pthread_mutex_t		*forks;
 	pthread_mutex_t		mutex_dead;
@@ -58,11 +59,21 @@ int						init(t_config *config);
 int						init_mutex(t_config *config);
 
 // MONITOR
+int 					check_death(t_config *config);
 void 					monitor(void *arg);
+void 					set_up_death(t_config *config);
 
 // PARSING
 int						parsing(int ac, char **av, t_config *config);
 void					ft_putstr_fd(char *s, int fd);
+
+// PRINT
+int						print_eat(t_philo *philo);
+int						print_sleep(t_philo *philo);
+int						print_think(t_philo *philo);
+
+// ROUTINE
+int						start_routine(t_config *config);
 
 // TIME
 int						get_time(void);

@@ -6,7 +6,7 @@
 /*   By: enschnei <enschnei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 18:42:26 by enschnei          #+#    #+#             */
-/*   Updated: 2025/05/01 20:05:49 by enschnei         ###   ########.fr       */
+/*   Updated: 2025/05/02 13:01:00 by enschnei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	routine_philo(void *arg)
     {
         print_eat(philo);
         print_sleep(philo);
-        print_thinking(philo);
+        print_think(philo);
     }
 	return (NULL);
 }
