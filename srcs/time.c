@@ -6,7 +6,7 @@
 /*   By: enschnei <enschnei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 18:50:31 by enschnei          #+#    #+#             */
-/*   Updated: 2025/05/02 13:56:22 by enschnei         ###   ########.fr       */
+/*   Updated: 2025/05/02 16:19:18 by enschnei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_usleep(t_config *config, int time)
 	while (get_time() - start_time < time)
 	{
 		if (status_death(config))
-            break ;
-        usleep (100);
+			break ;
+		usleep(100);
 	}
 }

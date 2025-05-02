@@ -6,7 +6,7 @@
 /*   By: enschnei <enschnei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 12:27:32 by enschnei          #+#    #+#             */
-/*   Updated: 2025/05/02 14:32:21 by enschnei         ###   ########.fr       */
+/*   Updated: 2025/05/02 16:18:52 by enschnei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@ void	print_msg(t_philo *philo, int message_value)
 {
 	pthread_mutex_lock(&philo->config->mutex_print);
 	if (status_death(philo->config) == EXIT_FAILURE && message_value != 5)
-    {
-        pthread_mutex_unlock(&philo->config->mutex_print);
-        return ;
-    }
+	{
+		pthread_mutex_unlock(&philo->config->mutex_print);
+		return ;
+	}
 	if (message_value == 1)
-		printf("%u %d has taken a fork\n", get_time() - philo->config->start_time,
-			philo->id);
+		printf("%u %d has taken a fork\n", get_time()
+			- philo->config->start_time, philo->id);
 	else if (message_value == 2)
 		printf("%u %d is eating\n", get_time() - philo->config->start_time,
 			philo->id);
@@ -34,7 +34,8 @@ void	print_msg(t_philo *philo, int message_value)
 			philo->id);
 	else if (message_value == 5)
 	{
-		printf("%u %d died\n", get_time() - philo->config->start_time, philo->id);
+		printf("%u %d died\n", get_time() - philo->config->start_time,
+			philo->id);
 		set_up_death(philo->config);
 	}
 	pthread_mutex_unlock(&philo->config->mutex_print);
@@ -82,8 +83,8 @@ int	print_think(t_philo *philo)
 	if (status_death(philo->config) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	print_msg(philo, 4);
-    if (philo->config->nbr_philo % 2 == 0)
-        return (EXIT_SUCCESS);
-    ft_usleep (philo->config, 100);
+	if (philo->config->nbr_philo % 2 == 0)
+		return (EXIT_SUCCESS);
+	ft_usleep(philo->config, 100);
 	return (EXIT_SUCCESS);
 }

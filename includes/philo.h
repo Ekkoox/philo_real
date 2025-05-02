@@ -6,7 +6,7 @@
 /*   By: enschnei <enschnei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 14:26:22 by enschnei          #+#    #+#             */
-/*   Updated: 2025/05/02 14:24:38 by enschnei         ###   ########.fr       */
+/*   Updated: 2025/05/02 16:18:39 by enschnei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ int						init(t_config *config);
 int						init_mutex(t_config *config);
 
 // MONITOR
-int 					status_death(t_config *config);
-void 					*monitor(void *arg);
-void 					set_up_death(t_config *config);
+int						status_death(t_config *config);
+void					*monitor(void *arg);
+void					set_up_death(t_config *config);
 
 // PARSING
 int						parsing(int ac, char **av, t_config *config);

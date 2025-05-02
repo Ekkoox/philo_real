@@ -6,7 +6,7 @@
 /*   By: enschnei <enschnei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 18:42:26 by enschnei          #+#    #+#             */
-/*   Updated: 2025/05/02 14:24:04 by enschnei         ###   ########.fr       */
+/*   Updated: 2025/05/02 16:19:27 by enschnei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,15 +28,19 @@ void	*routine_philo(void *arg)
 	pthread_mutex_unlock(&philo->config->mutex_last_meal);
 	wait_the_philo(philo->config->start_time);
 	if (philo->config->nbr_philo == 1)
+	{
+		ft_usleep(philo->config, philo->config->time_to_die);
+		print_msg(philo, 5);
 		return (NULL);
-    if (philo->position % 2)
-        ft_usleep(philo->config, philo->config->time_to_eat);
-    while(status_death(philo->config) != EXIT_FAILURE)
-    {
-        print_eat(philo);
-        print_sleep(philo);
-        print_think(philo);
-    }
+	}
+	if (philo->position % 2)
+		ft_usleep(philo->config, philo->config->time_to_eat);
+	while (status_death(philo->config) != EXIT_FAILURE)
+	{
+		print_eat(philo);
+		print_sleep(philo);
+		print_think(philo);
+	}
 	return (NULL);
 }
 
@@ -54,8 +58,8 @@ int	start_routine(t_config *config)
 			return (EXIT_FAILURE);
 		i++;
 	}
-	if (pthread_create(&config->monitor, NULL, &monitor, &config->monitor))
-	    return (EXIT_FAILURE);
+	if (pthread_create(&config->monitor, NULL, &monitor, config))
+		return (EXIT_FAILURE);
 	if (join_philo(config) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);

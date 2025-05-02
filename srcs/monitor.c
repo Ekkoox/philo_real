@@ -6,7 +6,7 @@
 /*   By: enschnei <enschnei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 19:49:38 by enschnei          #+#    #+#             */
-/*   Updated: 2025/05/02 14:24:44 by enschnei         ###   ########.fr       */
+/*   Updated: 2025/05/02 16:19:12 by enschnei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,10 @@ int	stop_everything(t_config *config)
 		}
 		i++;
 	}
-	if (all_eat == config->max_meals)
+	if (config->max_meals && all_eat)
 	{
 		set_up_death(config);
+		printf("The philosophers have eaten enough\n");
 		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);
