@@ -6,7 +6,7 @@
 /*   By: enschnei <enschnei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 15:09:16 by enschnei          #+#    #+#             */
-/*   Updated: 2025/05/01 18:19:41 by enschnei         ###   ########.fr       */
+/*   Updated: 2025/05/02 14:28:11 by enschnei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	init_philo(t_config *config)
 	return (EXIT_SUCCESS);
 }
 
-static int	init_fork_philo(t_philo *philo, int i)
+static void	init_fork_philo(t_philo *philo, int i)
 {
 	if (philo->position % 2 == 0)
 	{
@@ -55,14 +55,17 @@ static int	init_forks(t_config *config)
 	i = 0;
 	config->forks = malloc(sizeof(pthread_mutex_t) * config->nbr_philo);
 	if (!config->forks)
+	{
+		free(config->philo);
 		return (EXIT_FAILURE);
+	}
 	while (i < config->nbr_philo)
 	{
-		if (phtread_mutex_init(&config->philo[i], i))
-			;
+		if (pthread_mutex_init(&config->forks[i], NULL))
 		{
 			free(config->philo);
 			free(config->forks);
+			return (EXIT_FAILURE);
 		}
 		init_fork_philo(&config->philo[i], i);
 		i++;

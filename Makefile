@@ -6,6 +6,7 @@ C_FILES = main.c\
 			monitor.c\
 			parsing.c\
 			routine.c\
+			print_msg.c\
 			init_everything.c\
 
 

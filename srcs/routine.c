@@ -6,7 +6,7 @@
 /*   By: enschnei <enschnei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 18:42:26 by enschnei          #+#    #+#             */
-/*   Updated: 2025/05/02 13:01:00 by enschnei         ###   ########.fr       */
+/*   Updated: 2025/05/02 14:24:04 by enschnei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	wait_the_philo(int start_time)
 		continue ;
 }
 
-static void	routine_philo(void *arg)
+void	*routine_philo(void *arg)
 {
 	t_philo	*philo;
 
@@ -31,7 +31,7 @@ static void	routine_philo(void *arg)
 		return (NULL);
     if (philo->position % 2)
         ft_usleep(philo->config, philo->config->time_to_eat);
-    while(check_death(philo->config) != EXIT_FAILURE)
+    while(status_death(philo->config) != EXIT_FAILURE)
     {
         print_eat(philo);
         print_sleep(philo);

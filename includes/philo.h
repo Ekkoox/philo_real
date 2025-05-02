@@ -6,7 +6,7 @@
 /*   By: enschnei <enschnei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 14:26:22 by enschnei          #+#    #+#             */
-/*   Updated: 2025/05/02 13:06:41 by enschnei         ###   ########.fr       */
+/*   Updated: 2025/05/02 14:24:38 by enschnei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ int						init(t_config *config);
 int						init_mutex(t_config *config);
 
 // MONITOR
-int 					check_death(t_config *config);
-void 					monitor(void *arg);
+int 					status_death(t_config *config);
+void 					*monitor(void *arg);
 void 					set_up_death(t_config *config);
 
 // PARSING
@@ -71,6 +71,7 @@ void					ft_putstr_fd(char *s, int fd);
 int						print_eat(t_philo *philo);
 int						print_sleep(t_philo *philo);
 int						print_think(t_philo *philo);
+void					print_msg(t_philo *philo, int message_value);
 
 // ROUTINE
 int						start_routine(t_config *config);
