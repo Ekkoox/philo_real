@@ -35,7 +35,7 @@ $(NAME): $(SRCS)
 	@echo "$(BOLD)$(YELLOW) COMPILATION TERMINE $(RESET)"
 
 clean:
-	@echo "$(RED)FR$(WHITE)E$(GREEN)E $(RED)PAL$(WHITE)EST$(GREEN)INE$(RESET)"
+	
 
 fclean: clean
 	@echo "Removing executable..."

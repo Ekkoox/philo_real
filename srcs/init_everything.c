@@ -6,7 +6,7 @@
 /*   By: enschnei <enschnei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 15:09:16 by enschnei          #+#    #+#             */
-/*   Updated: 2025/05/02 14:28:11 by enschnei         ###   ########.fr       */
+/*   Updated: 2025/05/05 15:27:00 by enschnei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,13 @@ int	init_mutex(t_config *config)
 	if (pthread_mutex_init(&config->mutex_count_meal, NULL))
 		return (EXIT_FAILURE);
 	if (pthread_mutex_init(&config->mutex_dead, NULL))
-		return (EXIT_FAILURE);
+		return (pthread_mutex_destroy(&config->mutex_count_meal), EXIT_FAILURE);
 	if (pthread_mutex_init(&config->mutex_last_meal, NULL))
-		return (EXIT_FAILURE);
+		return (pthread_mutex_destroy(&config->mutex_count_meal),
+			pthread_mutex_destroy(&config->mutex_dead), EXIT_FAILURE);
 	if (pthread_mutex_init(&config->mutex_print, NULL))
-		return (EXIT_FAILURE);
+		return (pthread_mutex_destroy(&config->mutex_count_meal),
+			pthread_mutex_destroy(&config->mutex_dead),
+			pthread_mutex_destroy(&config->mutex_last_meal), EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
